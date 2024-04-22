@@ -1,0 +1,7 @@
+﻿Thanks to Gavin Lon Youtube Channel.
+
+Youtube Link:https://youtu.be/D7R_ToqDKHg?si=RDEbf3_q0X0fzwLT
+
+Database Design Link:https://github.com/GavinLonDigital/MVC_TechTree_DatabaseDesign
+
+GitHub Link: https://github.com/GavinLonDigital/TechTreeMVCWebApplication
