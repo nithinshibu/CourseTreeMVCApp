@@ -18,6 +18,8 @@ namespace CourseTreeMVCApp.Data
         [StringLength(50)]
         public string PostCode { get; set; }
 
+        //The Id column which is a GUID in aspnetusers table will be stored in UserCategory table as UserId.
+
         [ForeignKey("UserId")]
         public virtual ICollection<UserCategory> UserCategory { get; set; }
     }

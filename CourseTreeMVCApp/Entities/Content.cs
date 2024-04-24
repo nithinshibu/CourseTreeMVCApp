@@ -17,6 +17,8 @@ namespace CourseTreeMVCApp.Entities
         [Display(Name = "Video Link")]
         public string VideoLink { get; set; }
 
+        //The content entity is having a one to one relationship with category item entity
+        //Here we are establishing the referential integrity between the content entity and the category item entity
         public CategoryItem CategoryItem { get; set; }
 
         [NotMapped]

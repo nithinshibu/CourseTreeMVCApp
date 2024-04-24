@@ -16,6 +16,7 @@ namespace CourseTreeMVCApp.Entities
 
         public string Description { get; set; }
 
+        //this represents the foreign key field from the category entity 
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please select a valid item from the '{0}' dropdown list")]

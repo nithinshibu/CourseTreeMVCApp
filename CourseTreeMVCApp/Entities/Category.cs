@@ -17,6 +17,11 @@ namespace CourseTreeMVCApp.Entities
         [Display(Name = "Thumbnail Image Path")]
         public string ThumbnailImagePath { get; set; }
 
+        //to enforce referential integrity between the category entity and category item entity
+        //In category item table there will be a foreign key called CategoryId.
+        //The category item class contains a property named category id so by passing the text category id to the 
+        //foreign key attribute we are declaratively establishing the relationship between the category entity and category item entity. 
+
         [ForeignKey("CategoryId")]
         public virtual ICollection<CategoryItem> CategoryItems { get; set; }
 
