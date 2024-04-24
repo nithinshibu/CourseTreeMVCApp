@@ -5,3 +5,19 @@ Youtube Link:https://youtu.be/D7R_ToqDKHg?si=RDEbf3_q0X0fzwLT
 Database Design Link:https://github.com/GavinLonDigital/MVC_TechTree_DatabaseDesign
 
 GitHub Link: https://github.com/GavinLonDigital/TechTreeMVCWebApplication
+
+> In Package Manger Console
+To add migration, use the command "Add-Migration <MigrationName>".
+To reflect these changes in the database , use the command "Update-Database".
+To remove migration, use the command "Remove-Migration".
+To rollback the changes in the database, use the command "Update-Database <Particular-MigrationName-ToBeRolledBack>"
+
+
+>In Command Line
+
+Install this command "dotnet tool install --global dotnet-ef"
+Go the Project location using "cd <directory-path>" and here make use when using the command "dir" , the .csproj file is included in the listed files.
+To add migration, use the command "dotnet ef migrations add <migration-name>"
+To remove migration, use the command "dotnet ef migrations remove"
+To commit the changes to the database, use the command "dotnet ef database update"
+To rollback the changes made to the database, use the command "dotnet ef database update <previous-migration-name>"
