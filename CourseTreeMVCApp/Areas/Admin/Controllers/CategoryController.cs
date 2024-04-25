@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
+using CourseTreeMVCApp.Models.DTO;
 
 namespace CourseTreeMVCApp.Areas.Admin.Controllers
 {
@@ -57,15 +58,22 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,ThumbnailImagePath")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,ThumbnailImagePath")] CategoryDTO categoryDto)
         {
             if (ModelState.IsValid)
             {
+                Category category = new Category()
+                {
+                    Id = categoryDto.Id,
+                    Title = categoryDto.Title,
+                    Description = categoryDto.Description,
+                    ThumbnailImagePath = categoryDto.ThumbnailImagePath,
+                };
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryDto);
         }
 
         // GET: Admin/Category/Edit/5
@@ -89,9 +97,9 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,ThumbnailImagePath")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,ThumbnailImagePath")] CategoryDTO categoryDto)
         {
-            if (id != category.Id)
+            if (id != categoryDto.Id)
             {
                 return NotFound();
             }
@@ -100,12 +108,19 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             {
                 try
                 {
+                    Category category = new Category()
+                    {
+                        Id = categoryDto.Id,
+                        Title = categoryDto.Title,
+                        Description = categoryDto.Description,
+                        ThumbnailImagePath = categoryDto.ThumbnailImagePath,
+                    };
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!CategoryExists(categoryDto.Id))
                     {
                         return NotFound();
                     }
@@ -116,7 +131,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryDto);
         }
 
         // GET: Admin/Category/Delete/5
