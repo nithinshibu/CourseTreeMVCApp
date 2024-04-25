@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
+using CourseTreeMVCApp.Extensions;
 
 namespace CourseTreeMVCApp.Areas.Admin.Controllers
 {
@@ -21,10 +22,25 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/CategoryItem
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int categoryId)
         {
+
+            List<CategoryItem> list = await (from catItem in _context.CategoryItem where catItem.CategoryId == categoryId select new CategoryItem
+            {
+                Id=catItem.CategoryId,
+                Title=catItem.Title,
+                Description=catItem.Description,
+                DateTimeItemReleased=catItem.DateTimeItemReleased,
+                MediaTypeId=catItem.MediaTypeId,
+                CategoryId= categoryId
+            }).ToListAsync();
+
+
+            ViewBag.CategoryId = categoryId;    
+
+
               return _context.CategoryItem != null ? 
-                          View(await _context.CategoryItem.ToListAsync()) :
+                          View(list) :
                           Problem("Entity set 'ApplicationDbContext.CategoryItem'  is null.");
         }
 
@@ -47,9 +63,15 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/CategoryItem/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int categoryId)
         {
-            return View();
+            List<MediaType> mediaTypes = await _context.MediaType.ToListAsync();
+            CategoryItem categoryItem = new CategoryItem()
+            {
+                CategoryId = categoryId,
+                MediaTypes = mediaTypes.ConvertToSelectList(0)
+            }; 
+            return View(categoryItem);
         }
 
         // POST: Admin/CategoryItem/Create
