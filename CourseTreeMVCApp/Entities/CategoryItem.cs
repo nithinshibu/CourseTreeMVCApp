@@ -23,6 +23,7 @@ namespace CourseTreeMVCApp.Entities
         [Display(Name = "Media Type")]
         public int MediaTypeId { get; set; }
 
+        // To make sure this doesn't affect the migration we can add the Not Mapped attribute , hence this will be ignored
         [NotMapped]
         public virtual ICollection<SelectListItem> MediaTypes { get; set; }
 
