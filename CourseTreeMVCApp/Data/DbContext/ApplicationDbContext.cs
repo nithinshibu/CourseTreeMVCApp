@@ -15,5 +15,7 @@ namespace CourseTreeMVCApp.Data.DbContext
         public DbSet<MediaType> MediaType { get; set; }
         public DbSet<UserCategory> UserCategory { get; set; }
         public DbSet<Content> Content { get; set; }
+
+       
     }
 }
