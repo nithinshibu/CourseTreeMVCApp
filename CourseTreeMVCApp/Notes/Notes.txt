@@ -6,6 +6,9 @@ Database Design Link:https://github.com/GavinLonDigital/MVC_TechTree_DatabaseDes
 
 GitHub Link: https://github.com/GavinLonDigital/TechTreeMVCWebApplication
 
+
+Remember to Run the SQL Scripts from above Github for Media Types.
+
 > In Package Manger Console
 To add migration, use the command "Add-Migration <MigrationName>".
 To reflect these changes in the database , use the command "Update-Database".
