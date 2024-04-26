@@ -25,7 +25,7 @@ namespace CourseTreeMVCApp.Entities
 
         // To make sure this doesn't affect the migration we can add the Not Mapped attribute , hence this will be ignored
         [NotMapped]
-        public virtual ICollection<SelectListItem> MediaTypes { get; set; }
+        public virtual ICollection<SelectListItem>? MediaTypes { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Release Date")]
