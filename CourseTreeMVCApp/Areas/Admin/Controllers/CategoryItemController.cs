@@ -27,7 +27,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
 
             List<CategoryItem> list = await (from catItem in _context.CategoryItem where catItem.CategoryId == categoryId select new CategoryItem
             {
-                Id=catItem.CategoryId,
+                Id=catItem.Id,
                 Title=catItem.Title,
                 Description=catItem.Description,
                 DateTimeItemReleased=catItem.DateTimeItemReleased,
@@ -75,8 +75,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         }
 
         // POST: Admin/CategoryItem/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,CategoryId,MediaTypeId,DateTimeItemReleased")] CategoryItem categoryItem)
@@ -98,17 +97,22 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            List<MediaType> mediaTypes = await _context.MediaType.ToListAsync();
+
+
+
             var categoryItem = await _context.CategoryItem.FindAsync(id);
             if (categoryItem == null)
             {
                 return NotFound();
             }
+
+            categoryItem.MediaTypes = mediaTypes.ConvertToSelectList(categoryItem.MediaTypeId);
+
             return View(categoryItem);
         }
 
         // POST: Admin/CategoryItem/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,CategoryId,MediaTypeId,DateTimeItemReleased")] CategoryItem categoryItem)
@@ -136,7 +140,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new {categoryId=categoryItem.CategoryId});
             }
             return View(categoryItem);
         }
