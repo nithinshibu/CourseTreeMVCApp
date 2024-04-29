@@ -20,31 +20,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Content
-        public async Task<IActionResult> Index()
-        {
-              return _context.Content != null ? 
-                          View(await _context.Content.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Content'  is null.");
-        }
-
-        // GET: Admin/Content/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Content == null)
-            {
-                return NotFound();
-            }
-
-            var content = await _context.Content
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (content == null)
-            {
-                return NotFound();
-            }
-
-            return View(content);
-        }
+       
 
         // GET: Admin/Content/Create
         public IActionResult Create()
@@ -119,42 +95,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             return View(content);
         }
 
-        // GET: Admin/Content/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Content == null)
-            {
-                return NotFound();
-            }
-
-            var content = await _context.Content
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (content == null)
-            {
-                return NotFound();
-            }
-
-            return View(content);
-        }
-
-        // POST: Admin/Content/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Content == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Content'  is null.");
-            }
-            var content = await _context.Content.FindAsync(id);
-            if (content != null)
-            {
-                _context.Content.Remove(content);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+       
 
         private bool ContentExists(int id)
         {

@@ -24,3 +24,6 @@ To add migration, use the command "dotnet ef migrations add <migration-name>"
 To remove migration, use the command "dotnet ef migrations remove"
 To commit the changes to the database, use the command "dotnet ef database update"
 To rollback the changes made to the database, use the command "dotnet ef database update <previous-migration-name>"
+
+
+We created a MVC Area and the controllers were added using Scaffolding Item
