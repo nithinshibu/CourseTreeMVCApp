@@ -24,24 +24,44 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         // GET: Admin/CategoryItem
         public async Task<IActionResult> Index(int categoryId)
         {
+            /*
+             Here, first we are joining the category item entity with the content entity.
+            The content entity contains a foreign key from the category item entity which will be used for joining the entities.
+            We can then create a group for the content items related to each category item.
+            Then we can select from the group (contentcatgroup) whcih we have created into an object (subContent)
+            And also we are calling the DefaultIfEmpty() method on each content group 
+            Because if a category item doesnot contain content then the subContent object will be set to NULL
+            So this provides us with an easy way to tell if a category item contains content or doesnot contain content.   
+            
 
-            List<CategoryItem> list = await (from catItem in _context.CategoryItem where catItem.CategoryId == categoryId select new CategoryItem
-            {
-                Id=catItem.Id,
-                Title=catItem.Title,
-                Description=catItem.Description,
-                DateTimeItemReleased=catItem.DateTimeItemReleased,
-                MediaTypeId=catItem.MediaTypeId,
-                CategoryId= categoryId
-            }).ToListAsync();
+            We are using a ternary operator to assign the content id property in the returned category item object to Zero if the content id 
+            for that particular category item has not been added to the system yet.
+
+            If the content for that particular category item is present then we will assign the content for that category item
+            */
+            List<CategoryItem> list = await (from catItem in _context.CategoryItem
+                                             join contentItem in _context.Content on catItem.Id equals contentItem.CategoryId
+                                             into contentcatgroup
+                                             from subContent in contentcatgroup.DefaultIfEmpty()
+                                             where catItem.CategoryId == categoryId
+                                             select new CategoryItem
+                                             {
+                                                 Id = catItem.Id,
+                                                 Title = catItem.Title,
+                                                 Description = catItem.Description,
+                                                 DateTimeItemReleased = catItem.DateTimeItemReleased,
+                                                 MediaTypeId = catItem.MediaTypeId,
+                                                 CategoryId = categoryId,
+                                                 ContentId = (subContent != null) ? subContent.Id : 0
+                                             }).ToListAsync();
 
 
-            ViewBag.CategoryId = categoryId;    
+            ViewBag.CategoryId = categoryId;
 
 
-              return _context.CategoryItem != null ? 
-                          View(list) :
-                          Problem("Entity set 'ApplicationDbContext.CategoryItem'  is null.");
+            return _context.CategoryItem != null ?
+                        View(list) :
+                        Problem("Entity set 'ApplicationDbContext.CategoryItem'  is null.");
         }
 
         // GET: Admin/CategoryItem/Details/5
@@ -72,12 +92,12 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             {
                 CategoryId = categoryId,
                 MediaTypes = mediaTypes.ConvertToSelectList(0)
-            }; 
+            };
             return View(categoryItem);
         }
 
         // POST: Admin/CategoryItem/Create
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,CategoryId,MediaTypeId,DateTimeItemReleased")] CategoryItem categoryItem)
@@ -144,7 +164,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new {categoryId=categoryItem.CategoryId});
+                return RedirectToAction(nameof(Index), new { categoryId = categoryItem.CategoryId });
             }
             return View(categoryItem);
         }
@@ -181,14 +201,14 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             {
                 _context.CategoryItem.Remove(categoryItem);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index), new { categoryId =categoryItem?.CategoryId});
+            return RedirectToAction(nameof(Index), new { categoryId = categoryItem?.CategoryId });
         }
 
         private bool CategoryItemExists(int id)
         {
-          return (_context.CategoryItem?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.CategoryItem?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
