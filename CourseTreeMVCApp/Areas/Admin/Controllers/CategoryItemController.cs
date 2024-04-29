@@ -59,6 +59,8 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CategoryId = categoryItem.CategoryId;
+
             return View(categoryItem);
         }
 
@@ -108,6 +110,8 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             }
 
             categoryItem.MediaTypes = mediaTypes.ConvertToSelectList(categoryItem.MediaTypeId);
+
+            ViewBag.CategoryId = categoryItem.CategoryId;
 
             return View(categoryItem);
         }
@@ -159,7 +163,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.CategoryId = categoryItem.CategoryId;
             return View(categoryItem);
         }
 
@@ -179,7 +183,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { categoryId =categoryItem?.CategoryId});
         }
 
         private bool CategoryItemExists(int id)
