@@ -40,7 +40,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             If the content for that particular category item is present then we will assign the content for that category item
             */
             List<CategoryItem> list = await (from catItem in _context.CategoryItem
-                                             join contentItem in _context.Content on catItem.Id equals contentItem.CategoryId
+                                             join contentItem in _context.Content on catItem.Id equals contentItem.CategoryItem.Id
                                              into contentcatgroup
                                              from subContent in contentcatgroup.DefaultIfEmpty()
                                              where catItem.CategoryId == categoryId

@@ -23,9 +23,14 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
        
 
         // GET: Admin/Content/Create
-        public IActionResult Create()
+        public IActionResult Create(int categoryItemId,int categoryId)
         {
-            return View();
+            Content content = new Content()
+            {
+                CategoryId = categoryId,
+                CatItemId= categoryItemId
+            };
+            return View(content);
         }
 
         // POST: Admin/Content/Create
@@ -33,13 +38,14 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,HTMLContent,VideoLink")] Content content)
+        public async Task<IActionResult> Create([Bind("Id,Title,HTMLContent,VideoLink,CategoryId,CatItemId")] Content content)
         {
             if (ModelState.IsValid)
             {
+                content.CategoryItem = await _context.CategoryItem.FindAsync(content.CatItemId);
                 _context.Add(content);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), "CategoryItem", new { categoryId=content.CategoryId });
             }
             return View(content);
         }
