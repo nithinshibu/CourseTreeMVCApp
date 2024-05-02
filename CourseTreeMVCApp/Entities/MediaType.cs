@@ -17,6 +17,6 @@ namespace CourseTreeMVCApp.Entities
         public string ThumbnailImagePath { get; set; }
 
         [ForeignKey("MediaTypeId")]
-        public virtual ICollection<CategoryItem> CategoryItems { get; set; }
+        public virtual ICollection<CategoryItem>? CategoryItems { get; set; }
     }
 }
