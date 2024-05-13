@@ -27,6 +27,8 @@ namespace CourseTreeMVCApp.Entities
         [NotMapped]
         public virtual ICollection<SelectListItem>? MediaTypes { get; set; }
 
+        //If we were using tag helpers then "ApplyFormatInEditMode =true" would make sure the format is applied.
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Release Date")]
         public DateTime DateTimeItemReleased
