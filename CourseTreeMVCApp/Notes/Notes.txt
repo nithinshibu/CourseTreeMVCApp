@@ -1,10 +1,13 @@
 ﻿Thanks to Gavin Lon Youtube Channel.
 
-Youtube Link:https://youtu.be/D7R_ToqDKHg?si=RDEbf3_q0X0fzwLT
+Youtube Link: https://www.youtube.com/playlist?list=PL4LFuHwItvKZ6Mz5W5wzD9uo3w6tNChhX
 
 Database Design Link:https://github.com/GavinLonDigital/MVC_TechTree_DatabaseDesign
 
 GitHub Link: https://github.com/GavinLonDigital/TechTreeMVCWebApplication
+
+
+jQuery Datepicker: https://jqueryui.com/download/
 
 
 Remember to Run the SQL Scripts from above Github for Media Types.

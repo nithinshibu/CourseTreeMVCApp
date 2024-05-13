@@ -31,7 +31,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateTimeItemReleased" class="control-label"></label>
-                <input asp-for="DateTimeItemReleased" class="form-control" />
+                @* Here as we use tag helpers, automatically as the datatype is of datetime, the input will be of type='date' *@
+                @* As we are using custom jQuery instead of the default datepicker, in this case we need to remove the tag helper for datetime released. *@
+                @* We are using custom jquery datepicker because the default datepicker will have different design in different browsers and customisations are limited *@
+                @* Removing tag helper from this :- <input asp-for="DateTimeItemReleased" class="datepicker form-control" /> *@
+                <input type="text" id="DateTimeItemReleased" name="DateTimeItemReleased" class="datepicker form-control" />
                 <span asp-validation-for="DateTimeItemReleased" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,5 +50,12 @@
 </div>
 
 @section Scripts {
+
+    <script>
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
