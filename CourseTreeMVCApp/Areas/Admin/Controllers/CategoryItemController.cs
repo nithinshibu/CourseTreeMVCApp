@@ -108,6 +108,8 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new { categoryId = categoryItem.CategoryId });
             }
+            List<MediaType> mediaTypes = await _context.MediaType.ToListAsync();
+            categoryItem.MediaTypes = mediaTypes.ConvertToSelectList(categoryItem.MediaTypeId);
             return View(categoryItem);
         }
 
