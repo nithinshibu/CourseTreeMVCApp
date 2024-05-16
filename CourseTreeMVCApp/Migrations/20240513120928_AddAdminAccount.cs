@@ -24,7 +24,7 @@ namespace CourseTreeMVCApp.Migrations
             sb.AppendLine("INSERT INTO AspNetUsers(Id, UserName, NormalizedUserName,Email,EmailConfirmed,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount,NormalizedEmail,PasswordHash,SecurityStamp,FirstName,LastName,Address1,Address2,PostCode)");
             sb.AppendLine("VALUES(");
             sb.AppendLine($"'{ADMIN_USER_GUID}'");
-            sb.AppendLine(",'admin@techtree.co.ukok'");
+            sb.AppendLine(",'admin@techtree.co.uk'");
             sb.AppendLine(",'ADMIN@TECHTREE.CO.UK'");
             sb.AppendLine(",'admin@techtree.co.uk'");
             sb.AppendLine(", 0");
