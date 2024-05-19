@@ -8,10 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
 using CourseTreeMVCApp.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourseTreeMVCApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //We can add multiple roles like this
+    //[Authorize(Roles ="Admin,HR")]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;

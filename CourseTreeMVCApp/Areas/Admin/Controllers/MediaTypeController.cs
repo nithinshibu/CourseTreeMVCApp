@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourseTreeMVCApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class MediaTypeController : Controller
     {
         private readonly ApplicationDbContext _context;

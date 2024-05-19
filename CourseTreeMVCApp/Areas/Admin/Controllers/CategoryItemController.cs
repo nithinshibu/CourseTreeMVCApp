@@ -8,10 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
 using CourseTreeMVCApp.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CourseTreeMVCApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class CategoryItemController : Controller
     {
         private readonly ApplicationDbContext _context;
