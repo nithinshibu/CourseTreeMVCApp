@@ -11,6 +11,7 @@ namespace CourseTreeMVCApp.Models
 
         [Required]
         [StringLength(100, MinimumLength = 2)]
+        //This property makes sure that the input property will be of type="password"
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
