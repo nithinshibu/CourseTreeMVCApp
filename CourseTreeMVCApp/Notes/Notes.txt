@@ -30,3 +30,7 @@ To rollback the changes made to the database, use the command "dotnet ef databas
 
 
 We created a MVC Area and the controllers were added using Scaffolding Item
+
+
+
+Article related to Anti Forgery Token :- https://learn.microsoft.com/en-us/aspnet/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks

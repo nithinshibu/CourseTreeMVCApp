@@ -18,9 +18,9 @@ namespace CourseTreeMVCApp.Models
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
 
-        public string LoginInValid { get; set; }
+        public string? LoginInValid { get; set; }
 
-        public string LoginFailedMessage { get; set; }
+        public string? LoginFailedMessage { get; set; }
 
     }
 }

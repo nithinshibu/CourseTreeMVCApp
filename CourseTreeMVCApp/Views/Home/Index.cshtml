@@ -17,3 +17,10 @@
             RememberMe = false
         }">
 </div>
+
+@section Scripts{
+    <script src="~/js/userlogin.js" asp-append-version="true"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+     }
+}
