@@ -1,11 +1,28 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using CourseTreeMVCApp.Data
+@inject SignInManager<ApplicationUser> SignInManager;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Course Tree</h1>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Not Logged In</h1>
+    </div>
+}
+
+
+
+
 
 
 
@@ -18,8 +35,26 @@
         }">
 </div>
 
+
+<div class="modal fade" id="UserRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_UserRegistrationPartial" model="new RegistrationModel
+        {
+            Email = String.Empty,
+            Password = String.Empty,
+            ConfirmPassword = String.Empty,
+            FirstName = String.Empty,
+            LastName = String.Empty,
+            PhoneNumber = String.Empty,
+            Address1 = String.Empty,
+            Address2 = String.Empty,
+            PostCode = String.Empty,
+            AcceptUserAgreement = false
+        }">
+</div>
+
 @section Scripts{
     <script src="~/js/userlogin.js" asp-append-version="true"></script>
+    <script src="~/js/userregisteration.js"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
      }
