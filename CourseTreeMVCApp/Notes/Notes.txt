@@ -29,8 +29,37 @@ To commit the changes to the database, use the command "dotnet ef database updat
 To rollback the changes made to the database, use the command "dotnet ef database update <previous-migration-name>"
 
 
-We created a MVC Area and the controllers were added using Scaffolding Item
+We created a MVC Area and the controllers were added using Scaffolding Item.
 
+By default when we create an MVC application we will have Models,Controllers and Views folder.
+Similarly when we create an Area will have the same inside the Areas folder for each area we create.
+Each Area will have it's own layout view.
+
+=========How to create an Area?=========
+
+1) Right Click on the project 
+2) Select Add New Scaffolded Item
+3) Then Select the item called "MVC Area"
+4) Give Area a name for example "Admin" and then click on Add Button
+
+Once an Area is added make sure to include this code in the Program.cs / Startup.cs(in older versions)
+
+app.MapControllerRoute(
+    name: "Admin",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+Also in the Views folder inside the Areas folder make sure to copy the files "_ViewImports,_ViewStart" and Shared Folder from the common Views folder in MVC project.
+
+====Automatically generate code for CRUD operations in Controllers inside Areas (scaffolding)====
+
+1) Right Click on the Controllers inside the Area folder (ex: Admin Area)
+2) Click on the new Scaffolded Item
+3) Select "MVC Controller with views,using Entity Framework"
+4) Click the Add button 
+5) Then select the Model class , suppose if we are going to create category controller then select Category Model.
+6) From the Data Context class select the ApplicationDbContext 
+7) Then leave all other options as it (Generate Views/Reference script libraries,Use a layout page :- all of them as selected)
+8) Finally edit the controller name if required.
 
 
 Article related to Anti Forgery Token :- https://learn.microsoft.com/en-us/aspnet/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
