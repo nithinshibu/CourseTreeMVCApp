@@ -1,4 +1,18 @@
-﻿$(function (){
+﻿$(function () {
+
+    onAcceptUserAgreementClick();
+
+    $("#UserRegistrationModal input[name = 'AcceptUserAgreement']").on('click', onAcceptUserAgreementClick);
+
+
+    function onAcceptUserAgreementClick() {
+        if ($(this).is(":checked")) {
+            $("#UserRegistrationModal button[name = 'register']").prop("disabled", false);
+        } else {
+            $("#UserRegistrationModal button[name = 'register']").prop("disabled", true);
+        }
+    }
+
     var registerUserButton = $("#UserRegistrationModal button[name = 'register']").on('click', onUserRegisterClick);
 
     function onUserRegisterClick() {
