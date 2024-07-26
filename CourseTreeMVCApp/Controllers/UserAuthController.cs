@@ -96,7 +96,7 @@ namespace CourseTreeMVCApp.Controllers
                     PostCode = registrationModel.PostCode
                 }; 
 
-                var result = await _userManager.CreateAsync(user,registrationModel.Password);
+                var result = await _userManager.CreateAsync(user,registrationModel.Password);//This is an identity result
                 if (result.Succeeded)
                 {
                     registrationModel.RegistrationInValid = "";
@@ -106,7 +106,13 @@ namespace CourseTreeMVCApp.Controllers
                     return PartialView("_UserRegistrationPartial",registrationModel);
                 }
 
-                ModelState.AddModelError("", "Registration Attempt Failed!");
+                //Instead of hardcoding we can use AddErrorsToModelState() method
+                //ModelState.AddModelError("", "Registration Attempt Failed!");
+
+                //This will be displayed in the div of _UserRegistrationPartial
+                //<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                AddErrorsToModelState(result);
+
             }
             return PartialView("_UserRegistrationPartial", registrationModel);
         }
@@ -132,6 +138,15 @@ namespace CourseTreeMVCApp.Controllers
             {
 
                 throw;
+            }
+
+        }
+
+        private void AddErrorsToModelState(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
         }
