@@ -13,6 +13,37 @@
         }
     }
 
+    $("#UserRegistrationModal input[name = 'Email']").on('blur', function () {
+        var email = $("#UserRegistrationModal input[id = 'Email']").val();
+        var url = "UserAuth/UserNameExists?userName=" + encodeURIComponent(email);
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                console.log("data=" + data);
+                if (data == true) {
+
+                    var alertHtml = '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
+                        '<strong>Invalid Email</strong><br>This email address has already been registered' +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">' +
+                        '</button>' +
+                        '</div>';
+
+                    //This alert_placeholder_register is the id of the div in _UserRegistrationPartial
+                    $("#alert_placeholder_register").html(alertHtml);
+
+                } else {
+                    $("#alert_placeholder_register").html("");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+            }
+        })
+
+    });
+
     var registerUserButton = $("#UserRegistrationModal button[name = 'register']").on('click', onUserRegisterClick);
 
     function onUserRegisterClick() {

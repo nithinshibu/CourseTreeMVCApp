@@ -117,11 +117,15 @@ namespace CourseTreeMVCApp.Controllers
         {
             try
             {
-                bool userNameExists = await _context.Users.AnyAsync(x => x.UserName.ToUpper() == userName.ToUpper());
-                if (userNameExists)
+                if (!string.IsNullOrEmpty(userName))
                 {
-                    return true;
+                    bool userNameExists = await _context.Users.AnyAsync(x => x.UserName.ToUpper() == userName.ToUpper());
+                    if (userNameExists)
+                    {
+                        return true;
+                    }
                 }
+                
                 return false;
             }
             catch (Exception)
