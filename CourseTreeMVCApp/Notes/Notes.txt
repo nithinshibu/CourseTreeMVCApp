@@ -63,3 +63,9 @@ Also in the Views folder inside the Areas folder make sure to copy the files "_V
 
 
 Article related to Anti Forgery Token :- https://learn.microsoft.com/en-us/aspnet/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
+
+Login UserName and Password:-
+
+UserName:- admin@techtree.co.uk
+Password:- Password100!
+
