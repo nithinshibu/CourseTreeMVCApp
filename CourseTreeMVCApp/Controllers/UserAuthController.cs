@@ -4,6 +4,7 @@ using CourseTreeMVCApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using LoginModel = CourseTreeMVCApp.Models.LoginModel;
 
 namespace CourseTreeMVCApp.Controllers
@@ -109,5 +110,28 @@ namespace CourseTreeMVCApp.Controllers
             }
             return PartialView("_UserRegistrationPartial", registrationModel);
         }
+
+
+        [AllowAnonymous]
+        public async Task<bool> UserNameExists(string userName)
+        {
+            try
+            {
+                bool userNameExists = await _context.Users.AnyAsync(x => x.UserName.ToUpper() == userName.ToUpper());
+                if (userNameExists)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
     }
 }
