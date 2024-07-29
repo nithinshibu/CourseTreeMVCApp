@@ -22,23 +22,17 @@
             success: function (data) {
                 console.log("data=" + data);
                 if (data == true) {
-
-                    var alertHtml = '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
-                        '<strong>Invalid Email</strong><br>This email address has already been registered' +
-                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">' +
-                        '</button>' +
-                        '</div>';
-
                     //This alert_placeholder_register is the id of the div in _UserRegistrationPartial
-                    $("#alert_placeholder_register").html(alertHtml);
+                    PresentClosableBootstrapAlert("#alert_placeholder_register", "warning", "Invalid Email", "This email address has already been registered");
 
                 } else {
-                    $("#alert_placeholder_register").html("");
+                    CloseAlert("#alert_placeholder_register");
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                //PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
-                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+                let errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+                //console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
             }
         })
 
@@ -102,11 +96,11 @@
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+                let errorText = "Status: " + xhr.status + " - " + xhr.statusText;
 
-                //PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
 
-                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+                //console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
             }
 
         });
