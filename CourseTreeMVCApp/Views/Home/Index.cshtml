@@ -52,11 +52,9 @@ else
         }">
 </div>
 
-@section Scripts{
-    <script src="~/js/userlogin.js" asp-append-version="true"></script>
-    <script src="~/js/userregisteration.js"></script>
-    <script src="~/js/bootstrapalerts.js"></script>
+@section Scripts{    
     @{
+        await Html.RenderPartialAsync("_AuthScriptsPartial");
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

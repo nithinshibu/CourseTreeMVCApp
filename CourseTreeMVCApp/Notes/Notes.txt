@@ -69,3 +69,9 @@ Login UserName and Password:-
 UserName:- admin@techtree.co.uk
 Password:- Password100!
 
+======Creating a partial view=====
+
+Click on the "Shared" Folder and Add New Item
+Then Select "Razor View - Empty"
+Rename the partial view "_DemoPartial.cshtml"
+
