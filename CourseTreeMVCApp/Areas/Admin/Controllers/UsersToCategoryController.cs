@@ -44,7 +44,13 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveSelectedUsers([Bind("CategoryId", "UsersSelected")] UsersCategoryListModel usersCategoryListModel)
         {
-            var usersSelectedForCategoryToAdd = await GetUsersForCategoryToAdd(usersCategoryListModel);
+            List<UserCategory> usersSelectedForCategoryToAdd = null;
+
+            if(usersCategoryListModel.UsersSelected != null)
+            {
+                usersSelectedForCategoryToAdd = await GetUsersForCategoryToAdd(usersCategoryListModel);
+            }
+            
             var usersSelectedForCategoryToDelete = await GetUsersForCategoryToDelete(usersCategoryListModel.CategoryId);
             //Entity Framework Transaction
             //This will work only if all the operation are success, if one of them fails then all of them fails
@@ -54,9 +60,11 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 {
 
                     _context.RemoveRange(usersSelectedForCategoryToDelete);
+                    await _context.SaveChangesAsync();
                     if (usersSelectedForCategoryToAdd != null)
                     {
                         _context.AddRange(usersSelectedForCategoryToAdd);
+                        await _context.SaveChangesAsync();
                     }
                     //This line finalizes the transaction. It means "apply all the scheduled changes to the database." If this line is reached without errors, the deletions and additions are saved permanently.
                     await dbContextTransaction.CommitAsync();

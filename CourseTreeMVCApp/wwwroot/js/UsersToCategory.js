@@ -45,7 +45,7 @@
 
         var usersSelected = [];
 
-        $('input[type=checkbox]:checked').each(function{
+        $('input[type=checkbox]:checked').each(function(){
             var userModel = {
                 Id:$(this).attr("value")
             };
@@ -62,6 +62,7 @@
         $.ajax({
             type: "POST",
             url: url,
+            data: usersSelectedForCategory,
             success: function (data) {
                 $("#UsersCheckList").html(data);
             },
