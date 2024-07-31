@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.progress, .alert-success {
+    position: fixed;
+    height: 100px;
+    top: 50%;
+    left: 0;
+    width: 90%;
+    margin-left: 5%;
+}

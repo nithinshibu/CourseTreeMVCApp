@@ -77,6 +77,7 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
                 }
 
             }
+                        
             usersCategoryListModel.Users = await GetAllUsers();
             return PartialView("_UsersListViewPartial", usersCategoryListModel);
         }
