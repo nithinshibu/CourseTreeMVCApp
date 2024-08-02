@@ -75,3 +75,21 @@ Click on the "Shared" Folder and Add New Item
 Then Select "Razor View - Empty"
 Rename the partial view "_DemoPartial.cshtml"
 
+
+=======Exceptions======
+
+If we encounter an exception like "An unhandled exception occured while processing the request:- InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'exampleModel' but this ViewDataDictionary instance requires a model item of type 'anotherExampleModel' ".
+
+For this kind of error, make sure to add model (model="new anotherExampleModel) in the respective page like given below:-
+
+ <partial name="_UserLoginPartial" model="new LoginModel
+        {
+            Email = String.Empty,
+            Password = String.Empty,
+            RememberMe = false
+        }">
+
+==========If Logged In user is not showing any enrolled courses==========
+
+Make sure as an admin, all the category,categoryitem,content and media type is created for the course which the user has enrolled.Else create them first as Admin and then login as the normal user.
+
