@@ -93,3 +93,15 @@ For this kind of error, make sure to add model (model="new anotherExampleModel) 
 
 Make sure as an admin, all the category,categoryitem,content and media type is created for the course which the user has enrolled.Else create them first as Admin and then login as the normal user.
 
+==============VideoLink in Content===============
+
+For the video link, use embedded code from youtube.
+
+Example: <iframe width="1263" height="480" src="https://www.youtube.com/embed/w1_AmHv2LmA" title="Part 22 - Display Content - Let&#39;s Build an ASP.NET Core MVC Web Application on .NET 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+From this copy the link inside the src, src="https://www.youtube.com/embed/w1_AmHv2LmA".
+
+"https://www.youtube.com/embed/w1_AmHv2LmA" this will be the embedded code.
+
+Also we need to add one more thing in this link "https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1" (Add Autoplay ->  ?autoplay=1  and also add &mute=1)
+
