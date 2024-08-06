@@ -1,5 +1,6 @@
 ﻿using CourseTreeMVCApp.Data;
 using CourseTreeMVCApp.Data.DbContext;
+using CourseTreeMVCApp.Entities;
 using CourseTreeMVCApp.Models;
 using CourseTreeMVCApp.Models.DTO;
 using Microsoft.AspNetCore.Identity;
@@ -59,10 +60,57 @@ namespace CourseTreeMVCApp.Controllers
 
 
             }
+            else
+            {
+                //This Linq query queries the database for categories currently saved to the system
+                //that have atleast one related category item that contains content
+
+                var categories = await GetCategoriesThatHaveContent();
+
+                categoryDetailsModel.Categories = categories;
+
+
+            }
 
 
             return View(categoryDetailsModel);
         }
+
+        private async Task<List<Category>> GetCategoriesThatHaveContent()
+        {
+            /*
+             * We are querying the category table and joining to the category item table and then to the content table.
+             * We are joining the category table to the category item table and contents table,because we only want 
+             * categories that have at least one related category item that contains content.
+             * 
+             * So for the courses section in the home page for a user which hasn't logged on to the system we want to present the categories or courses to the user
+             * and not the categories along with the related category items as we were doing for when the user logged on to the system.
+             * 
+             * Here the category entity has a one-to-many relationship with the category item entity , this means if a category has more than one related category item
+             * then more than one row of data pertaining to the relevant category will be returned within the results.
+             * 
+             * But we only want distinct category related data returned from our query, so we are using Distinct so that only one row per category is
+             * returned within our results.
+             * 
+             */
+
+
+            var categoriesWithContent = await (from category in _context.Category
+                                               join categoryItem in _context.CategoryItem
+                                               on category.Id equals categoryItem.CategoryId
+                                               join content in _context.Content
+                                               on categoryItem.Id equals content.CategoryItem.Id
+                                               select new Category
+                                               {
+                                                   Id=category.Id,
+                                                   Title=category.Title,
+                                                   Description=category.Description,
+                                                   ThumbnailImagePath=category.ThumbnailImagePath,
+                                               }).Distinct().ToListAsync();
+
+            return categoriesWithContent;
+        }
+
 
         private IEnumerable<GroupedCategoryItemsByCategoryModel> GetGroupedCategoryItemsByCategory(IEnumerable<CategoryItemDetailsModel> categoryItemDetailsModels)
         {

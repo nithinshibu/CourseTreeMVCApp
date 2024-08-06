@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CourseTreeMVCApp.Entities.Category>
+﻿@using CourseTreeMVCApp.Entities
+@model IEnumerable<CourseTreeMVCApp.Entities.Category>
 
 @* Hero Section *@
 
@@ -8,4 +9,46 @@
         <h2 class="hero-heading-text">Learn Software Engineering at <strong>CourseTree</strong> </h2>
         <a id="HeroRegisterButton" class="btn btn-outline-info btn-lg text-light hero-register-button">Register</a>
     </div>
+</div>
+
+<hr class="section-divider"/>
+
+@* Courses Section *@
+<div class="courses section">
+    <h3 class="section-header">Courses</h3>
+    @*
+    So let's say we want to display four cards displayed per row.
+    Each card denotes a course.If we have 8 categories then 4 cards will be displayed on first row and next 4 cards on the 2nd row.
+    So we need to calculate how many cards we are going to display to the user in the courses section.
+    *@
+
+    @{
+        var count = Model.Count() / 4;
+        var catList = new List<Category>();
+    }
+
+    @for(int i = 0; i <= count; i++)
+    {
+        catList = Model.Skip(i * 4).Take(4).ToList();
+
+        <div class="row mt-3">
+            @foreach(Category item in catList)
+            {
+               <div class="col-md-3">
+                    <a href="#" class="text-dark">
+                        <div class="card">
+                            <img class="img-thumbnail" src="@item.ThumbnailImagePath" alt="@item.Title" />
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                                <p class="card-text">@item.Description</p>
+                            </div>
+                        </div>
+                    </a>
+               </div>
+            }
+        </div>
+
+    }
+
+
 </div>
