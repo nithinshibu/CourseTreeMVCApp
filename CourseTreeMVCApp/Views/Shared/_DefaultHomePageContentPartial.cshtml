@@ -1,5 +1,4 @@
-﻿@using CourseTreeMVCApp.Entities
-@model IEnumerable<CourseTreeMVCApp.Entities.Category>
+﻿@model IEnumerable<Category>
 
 @* Hero Section *@
 
@@ -23,31 +22,18 @@
     *@
 
     @{
-        var count = Model.Count() / 4;
+        const int itemsPerRow = 4;
+
+        var count = Model.Count() / itemsPerRow;
         var catList = new List<Category>();
     }
 
     @for(int i = 0; i <= count; i++)
     {
-        catList = Model.Skip(i * 4).Take(4).ToList();
+        //This skip is mainly used for DRY priniciple where I will be making use of partial view.
+        catList = Model.Skip(i * itemsPerRow).Take(itemsPerRow).ToList();       
 
-        <div class="row mt-3">
-            @foreach(Category item in catList)
-            {
-               <div class="col-md-3">
-                    <a href="#" class="text-dark">
-                        <div class="card">
-                            <img class="img-thumbnail" src="@item.ThumbnailImagePath" alt="@item.Title" />
-                            <div class="card-body">
-                                <h5 class="card-title">@item.Title</h5>
-                                <p class="card-text">@item.Description</p>
-                            </div>
-                        </div>
-                    </a>
-               </div>
-            }
-        </div>
-
+        <partial name="_DisplayCardRowPartial" model="catList" />
     }
 
 

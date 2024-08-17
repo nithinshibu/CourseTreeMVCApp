@@ -39,9 +39,7 @@
                     @Html.DisplayFor(modelItem => item.DateTimeItemReleased)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <partial name="_RUDButtonPartial" model="@item.Id" />
                     @* If the relevant category item , content id is 0 then we need to create a link that navigates the user to the create razor view  *@
                     @if (item.ContentId ==0)
                     {
