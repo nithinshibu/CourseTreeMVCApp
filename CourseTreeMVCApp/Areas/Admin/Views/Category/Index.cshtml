@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <partial name="_CreateButtonPartial" model="0" />
 </p>
 <table class="table">
     <thead>
@@ -38,7 +38,7 @@
             </td>
             <td>
                     <partial name="_RUDButtonPartial" model="@item.Id" />
-                    <a asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id">Update Items</a>
+                    <a asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id" class="btn btn-outline-secondary btn-sm">Update Items</a>
             </td>
         </tr>
 }

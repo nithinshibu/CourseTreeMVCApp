@@ -1,0 +1,17 @@
+﻿@model int
+
+@* For the Create Item for category and MediaType there is no Id required but in case of CategoryItem we require an Id *@
+
+@{
+    if (Model == 0)
+    {
+        //For category and media type
+        <a asp-action="Create" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i>Create New</a>
+    }
+    else
+    {
+        //for Category Item
+        <a asp-action="Create" class="btn btn-outline-info" asp-route-categoryId="@Model"><i class="fas fa-plus mr-2"></i>Create New</a>
+    }
+}
+

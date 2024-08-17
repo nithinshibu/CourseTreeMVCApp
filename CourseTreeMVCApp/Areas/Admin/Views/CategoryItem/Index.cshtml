@@ -7,8 +7,8 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create" asp-route-categoryId="@ViewBag.CategoryId">Create New</a>
+<p>    
+    <partial name="_CreateButtonPartial" model="@ViewBag.CategoryId" />
 </p>
 <table class="table">
     <thead>
