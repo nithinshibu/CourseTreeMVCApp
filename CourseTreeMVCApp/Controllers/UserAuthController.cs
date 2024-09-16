@@ -1,5 +1,6 @@
 ﻿using CourseTreeMVCApp.Data;
 using CourseTreeMVCApp.Data.DbContext;
+using CourseTreeMVCApp.Entities;
 using CourseTreeMVCApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -103,6 +104,14 @@ namespace CourseTreeMVCApp.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
+                    //So once the code that registers a user has run successfully we want code to run that adds the category id pertaining to relevant course card and the user's user id
+                    //to be added to the user category database table
+
+                    if(registrationModel.CategoryId != 0)
+                    {
+                        await AddCategoryToUser(user.Id, registrationModel.CategoryId);
+                    }
+
                     return PartialView("_UserRegistrationPartial",registrationModel);
                 }
 
@@ -151,6 +160,15 @@ namespace CourseTreeMVCApp.Controllers
 
         }
 
+        private async Task AddCategoryToUser(string userId,int categoryId)
+        {
+            UserCategory userCategory = new UserCategory();
+
+            userCategory.CategoryId = categoryId;
+            userCategory.UserId = userId;   
+            _context.UserCategory.Add(userCategory);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

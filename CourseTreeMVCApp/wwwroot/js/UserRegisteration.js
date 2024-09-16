@@ -1,5 +1,19 @@
 ﻿$(function () {
 
+
+    //this is the code we implement to set the CategoryId hidden text field to zero when the user cancels the registration process after clicking one of the course cards 
+    $("#UserRegistrationModal").on('hidden.bs.modal', function (e) {
+        $("#UserRegistrationModal input[name='CategoryId']").val('0');
+    });
+
+    //We haven't yet implemented the jquery code to display the user registration dialog to the user immediately after the user clicks a course card , before the user registration dialog is displayed
+    //to the user , we want the code to insert the category id value stored in the relevant anchor tags data-categoryId custom attribute into the hidden text field on the user registration dialog 
+
+    $('.RegisterLink').on('click', function () {
+        $("#UserRegistrationModal input[name='CategoryId']").val($(this).attr('data-categoryId'));
+        $("#UserRegistrationModal").modal("show");
+    });
+
     onAcceptUserAgreementClick();
 
     $("#UserRegistrationModal input[name = 'AcceptUserAgreement']").on('click', onAcceptUserAgreementClick);
@@ -53,6 +67,7 @@
         var address2 = $("#UserRegistrationModal input[name='Address2']").val();
         var postCode = $("#UserRegistrationModal input[name='PostCode']").val();
         var phoneNumber = $("#UserRegistrationModal input[name='PhoneNumber']").val();
+        // This categoryId was supposed to come here after the commit (id=29d626c9522b6c5a18519a7b6e8ecbfc12aefc40)
         var categoryId = $("#UserRegistrationModal input[name='CategoryId']").val();
 
         var user = {
@@ -67,6 +82,7 @@
             PostCode: postCode,
             PhoneNumber: phoneNumber,
             AcceptUserAgreement: true,
+            // This categoryId was supposed to come here after the commit (id=29d626c9522b6c5a18519a7b6e8ecbfc12aefc40)
             CategoryId: categoryId
         };
 

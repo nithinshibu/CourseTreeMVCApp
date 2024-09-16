@@ -44,6 +44,8 @@ namespace CourseTreeMVCApp.Models
         public string PhoneNumber { get; set; }
         public bool AcceptUserAgreement { get; set; }
         public string RegistrationInValid { get; set; } = "true";
+
+        //This categoryId was supposed to come here after the commit (id=29d626c9522b6c5a18519a7b6e8ecbfc12aefc40)
         public int CategoryId { get; set; }
     }
 }
