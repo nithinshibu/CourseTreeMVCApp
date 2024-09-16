@@ -1,0 +1,398 @@
+﻿CREATE DATABASE [CourseTreeDB]
+USE [CourseTreeDB]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoleClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](450) NOT NULL,
+	[Name] [nvarchar](256) NULL,
+	[NormalizedName] [nvarchar](256) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[ProviderDisplayName] [nvarchar](max) NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](450) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](450) NOT NULL,
+	[FirstName] [nvarchar](250) NOT NULL,
+	[LastName] [nvarchar](250) NOT NULL,
+	[Address1] [nvarchar](250) NOT NULL,
+	[Address2] [nvarchar](250) NOT NULL,
+	[PostCode] [nvarchar](50) NOT NULL,
+	[UserName] [nvarchar](256) NULL,
+	[NormalizedUserName] [nvarchar](256) NULL,
+	[Email] [nvarchar](256) NULL,
+	[NormalizedEmail] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEnd] [datetimeoffset](7) NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+ CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserTokens](
+	[UserId] [nvarchar](450) NOT NULL,
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[Name] [nvarchar](128) NOT NULL,
+	[Value] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[LoginProvider] ASC,
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[ThumbnailImagePath] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CategoryItem]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CategoryItem](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[MediaTypeId] [int] NOT NULL,
+	[DateTimeItemReleased] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_CategoryItem] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Content]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Content](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NOT NULL,
+	[HTMLContent] [nvarchar](max) NOT NULL,
+	[VideoLink] [nvarchar](max) NOT NULL,
+	[CategoryItemId] [int] NOT NULL,
+ CONSTRAINT [PK_Content] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MediaType]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MediaType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NOT NULL,
+	[ThumbnailImagePath] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_MediaType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserCategory]    Script Date: 16-09-2024 16:22:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserCategory](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+ CONSTRAINT [PK_UserCategory] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240422061610_Initial-Migration', N'7.0.18')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240422062447_Extended-IdentityUser', N'7.0.18')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240513120928_AddAdminAccount', N'7.0.18')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'b2c7605c-68c4-49f4-9402-a0f7e80d3b7b', N'Admin', N'ADMIN', NULL)
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'449a6d40-99b0-4a16-b8d1-32fe71f89228', N'b2c7605c-68c4-49f4-9402-a0f7e80d3b7b')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'008b1465-1200-4412-bbbd-8e3c1ff0313a', N'Henry', N'Jones', N'Test Address', N'Test Address2', N'E1 7HT', N'henryjones@gmail.com', N'HENRYJONES@GMAIL.COM', N'henryjones@gmail.com', N'HENRYJONES@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEFAgAvzOi5DZiHxLwKOfK15EaaAlH79lyB+CUAfe0ylne1u/HIZYSwrZ/Iw3wH5Jwg==', N'72FNSG3FNCIGL7AODPBZGGDUUZ2OPIR3', N'23b08ab0-6fb4-43d7-bed5-28128c58b568', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'08964132-76e4-481c-ba16-32be16f681c4', N'Admin', N'Test User', N'Sample Address', N'Sample Address ', N'E1 7DR', N'admin@gmail.com', N'ADMIN@GMAIL.COM', N'admin@gmail.com', N'ADMIN@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAENWE7fFcmyAExFgeQlFiHQoe/LFDgPxKnUJsqcrPjQsZUK5qubESDRigs3Hs97cPvA==', N'ZOS5UPNC54VPQDHIE3I4LQ2OYVNBU7DV', N'c011b6bf-1191-4c88-8ab8-629ed613f7b8', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'449a6d40-99b0-4a16-b8d1-32fe71f89228', N'Admin', N'', N'', N'', N'', N'admin@techtree.co.uk', N'ADMIN@TECHTREE.CO.UK', N'admin@techtree.co.uk', N'ADMIN@TECHTREE.CO.UK', 0, N'AQAAAAIAAYagAAAAELA7egMNYwouC/g+jjlCIg6s/IQYdJ5eOnMqYoySkO88xe1mCTHDjOONKSqPtFX0Ww==', N'', NULL, NULL, 0, 0, NULL, 0, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'56d78db7-171b-4883-866b-2839b761d6d6', N'NormalUser', N'Test', N'TestAddress', N'TestAddress 2', N'E1 7DR', N'testuser@gmail.com', N'TESTUSER@GMAIL.COM', N'testuser@gmail.com', N'TESTUSER@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEDqbxNr7bTFzPqVtymk+b+VaR0+QJXWCR1IufI0oaoB+rOfnDQGQ7vIAi2Lq9Er7fg==', N'UBHI455ML4FNZQWCZTZKGBDFYIWJA6XW', N'a1625115-843c-40f9-bd73-7fbbea075580', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'75b6b501-444b-492f-b25c-4257d04acb83', N'jane', N'doe', N'TestAddress', N'TestAddress 2', N'E1 7DR', N'janedoe@gmail.com', N'JANEDOE@GMAIL.COM', N'janedoe@gmail.com', N'JANEDOE@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEBN0C1LYNbxoy0QQUM/o3al/57ZbVmRgw8mfreBC3R7DTqnvPnFTyP9nJz0CMW6k5g==', N'U3W3LMZBEGSSLKHOP7MZFQXRBLEVULWA', N'd752522c-9caf-46f1-a5c6-9cb21726f8e7', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'a2c52fc1-b22d-4d9a-9819-5813ea95e671', N'Dean', N'Ambrox', N'Test Address', N'Test Address2', N'E1 7HT', N'gregory@gmail.com', N'GREGORY@GMAIL.COM', N'gregory@gmail.com', N'GREGORY@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEP82f/zYB8UCbaU8drcXXDLC+NWyVxbt0NjdtJrq6LP5Y9+n6dAGBIa+CGTnTxK3bw==', N'DZLH55CQGQPZYM3IUZT4Q2RLGEYFZUPP', N'a8c4eb0b-5e44-48cb-9ba9-78c32adf508c', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Address1], [Address2], [PostCode], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'c0726e2b-fd26-4ad8-a564-567f63cc1fea', N'Robert', N'Downey', N'TestAddress', N'TestAddress 2', N'E1 7DR', N'robert@gmail.com', N'ROBERT@GMAIL.COM', N'robert@gmail.com', N'ROBERT@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEAwEE4G039K0IoHGrFz8biAitAuD4qC40iCkEe7mexvspop7jg7OmjrTby094n5RzA==', N'OYC76TGWPBTJ3GS2MHWTRDFENBRA5OPB', N'01bdee8d-44c5-4720-9318-e87f2c26b896', N'01234 567890', 0, 0, NULL, 1, 0)
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (7, N'Beginner C#', N'This will provide a deep begineer level understanding about C#', N'/Images/CsharpBeginners.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (8, N'Advanced CSharp', N'This course will provide information about advanced C# courses', N'/Images/AdvancedCSharp.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (9, N'Azure Cloud', N'Learn about Azure Cloud concepts', N'/Images/AzureCloud.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (10, N'Node JS', N'Learn about Node JS', N'/Images/NodeJS.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (11, N'SQL server basics', N'Learn about the SQL server basics', N'/Images/SqlServerBeginners.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (12, N'Introduction 1', N'Introduction 1', N'/Images/CsharpBeginners.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (13, N'Introduction 2', N'Introduction 2', N'Images/AdvancedCSharp.jpeg')
+GO
+INSERT [dbo].[Category] ([Id], [Title], [Description], [ThumbnailImagePath]) VALUES (14, N'Introduction 3', N'Introduction 3', N'/Images/CsharpBeginners.jpeg')
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[CategoryItem] ON 
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (12, N'Beginner C# Courses', N'Test Demo Description For C# Courses', 7, 2, CAST(N'2024-08-02T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (13, N'Advanced Linq concepts', N'This will teach about the advanced linq concepts in c#', 8, 2, CAST(N'2024-08-06T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (14, N'Azure AZ 204', N'Learn about Azure Cloud concepts', 9, 2, CAST(N'2024-08-06T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (15, N'Node JS Basics', N'Learn about Node JS basics', 10, 2, CAST(N'2024-08-06T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (16, N'SQL Server for Beginners', N'SQL server tutorials for beginners', 11, 2, CAST(N'2024-08-06T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (17, N'Introduction 1', N'Introduction 1', 12, 1, CAST(N'2024-08-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (18, N'Introduction 2', N'Introduction 2', 13, 2, CAST(N'2024-08-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[CategoryItem] ([Id], [Title], [Description], [CategoryId], [MediaTypeId], [DateTimeItemReleased]) VALUES (19, N'Introduction 3', N'Introduction 3', 14, 2, CAST(N'2024-08-17T00:00:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[CategoryItem] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Content] ON 
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (4, N'Test Content', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 12)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (5, N'Advanced Linq Concepts ', N'<p>Advanced Linq concepts</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 13)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (6, N'Azure Cloud AZ 204', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 14)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (7, N'Node JS Basics', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 15)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (8, N'SQL server for Beginners', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 16)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (9, N'Introduction 1', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 17)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (10, N'Introduction 2', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 18)
+GO
+INSERT [dbo].[Content] ([Id], [Title], [HTMLContent], [VideoLink], [CategoryItemId]) VALUES (11, N'Introduction 3', N'<p>This is some text in a paragraph.</p>', N'https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1', 19)
+GO
+SET IDENTITY_INSERT [dbo].[Content] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MediaType] ON 
+GO
+INSERT [dbo].[MediaType] ([Id], [Title], [ThumbnailImagePath]) VALUES (1, N'Article', N'/images/ArticleImage.jpeg')
+GO
+INSERT [dbo].[MediaType] ([Id], [Title], [ThumbnailImagePath]) VALUES (2, N'Video', N'/Images/VideoImage.jpeg')
+GO
+SET IDENTITY_INSERT [dbo].[MediaType] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserCategory] ON 
+GO
+INSERT [dbo].[UserCategory] ([Id], [UserId], [CategoryId]) VALUES (43, N'56d78db7-171b-4883-866b-2839b761d6d6', 7)
+GO
+INSERT [dbo].[UserCategory] ([Id], [UserId], [CategoryId]) VALUES (44, N'56d78db7-171b-4883-866b-2839b761d6d6', 8)
+GO
+INSERT [dbo].[UserCategory] ([Id], [UserId], [CategoryId]) VALUES (45, N'c0726e2b-fd26-4ad8-a564-567f63cc1fea', 9)
+GO
+INSERT [dbo].[UserCategory] ([Id], [UserId], [CategoryId]) VALUES (46, N'75b6b501-444b-492f-b25c-4257d04acb83', 9)
+GO
+SET IDENTITY_INSERT [dbo].[UserCategory] OFF
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims] CHECK CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserTokens]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserTokens] CHECK CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[CategoryItem]  WITH CHECK ADD  CONSTRAINT [FK_CategoryItem_Category_CategoryId] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Category] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[CategoryItem] CHECK CONSTRAINT [FK_CategoryItem_Category_CategoryId]
+GO
+ALTER TABLE [dbo].[CategoryItem]  WITH CHECK ADD  CONSTRAINT [FK_CategoryItem_MediaType_MediaTypeId] FOREIGN KEY([MediaTypeId])
+REFERENCES [dbo].[MediaType] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[CategoryItem] CHECK CONSTRAINT [FK_CategoryItem_MediaType_MediaTypeId]
+GO
+ALTER TABLE [dbo].[Content]  WITH CHECK ADD  CONSTRAINT [FK_Content_CategoryItem_CategoryItemId] FOREIGN KEY([CategoryItemId])
+REFERENCES [dbo].[CategoryItem] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Content] CHECK CONSTRAINT [FK_Content_CategoryItem_CategoryItemId]
+GO
+ALTER TABLE [dbo].[UserCategory]  WITH CHECK ADD  CONSTRAINT [FK_UserCategory_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[UserCategory] CHECK CONSTRAINT [FK_UserCategory_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[UserCategory]  WITH CHECK ADD  CONSTRAINT [FK_UserCategory_Category_CategoryId] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Category] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[UserCategory] CHECK CONSTRAINT [FK_UserCategory_Category_CategoryId]
+GO

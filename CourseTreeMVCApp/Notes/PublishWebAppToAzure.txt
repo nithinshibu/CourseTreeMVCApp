@@ -1,0 +1,49 @@
+﻿Link: https://youtu.be/--A8ohPkcxw?si=_-9xmT8PrHlTSHBz
+
+For publishing this application into the azure cloud, first thing we need is a Microsoft Account.
+
+1)Creating a free Microsoft  Account and log in to azure portal
+
+https://azure.microsoft.com/
+
+2)Publishing the web application
+
+Click on the Publish button on the Visual Studio,
+Select "Azure", 
+click on Next,
+click on "Azure App Service(Windows)" and click on Next,
+Select the subscription (default one will be selected),
+Click on the + button near "App Service instances",
+Make sure we provide a unique Name in the provided Name textbox as it becomes a part of the URL.
+Give a proper name to the Resource Group
+Select a Hosting Plan --> Give an appropriate name for the Hosting Plan,Choose near by location and Size --> choose Free :) 
+Click on the Create button and once completed click on the Finish Button.
+
+3)Configure the SQL server Database 
+
+So in the  Service Dependencies , click on the configure button.
+Select the "Azure SQL Database"
+Click on the + button near SQL databases
+
+Give an appropriate Database name and leave the azure subscription and resource group as it is.
+
+Click the new button near the Database Server and leave the database server name as it is and choose the location.
+Give the appropriate UserName and Password for the Adminstrator.
+Click on the Create button
+
+Click on the Next button and enter the correct SQL server credentials for the Admin we just created.
+
+Click on the Finish button
+
+4) Publish the Web Application 
+
+- Make sure migrations will run (in our case Admin data we have written in one of the migration)
+
+Click on the Edit button
+
+Then on the Publish dialog click on the Settings tab,
+Click on the entity framework migrations 
+
+then click on the option "Apply this migration on publish" and click on the save button.
+
+Click on the Publish Button.
