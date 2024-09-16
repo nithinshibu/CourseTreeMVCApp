@@ -1,0 +1,32 @@
+﻿public class CompareById<T> : IEqualityComparer<T> where T : class
+{
+    public bool Equals(T? x, T? y)
+    {
+        if (y == null || x == null) return false;
+
+        var idX = x.GetType().GetProperty("Id")?.GetValue(x);
+        var idY = y.GetType().GetProperty("Id")?.GetValue(y);
+
+        if (idX != null && idY != null && idX.Equals(idY))
+            return true;
+
+        return false;
+    }
+
+    public int GetHashCode([DisallowNull] T obj)
+    {
+        var id = obj.GetType().GetProperty("Id")?.GetValue(obj);
+        return id != null ? id.GetHashCode() : 0;
+    }
+}
+
+
+Example of invoking the same 
+
+Model.UsersSelected.Contains(user, new CompareById<UserModel>());
+Model.CategoriesSelected.Contains(category, new CompareById<Category>());
+
+
+Now, instead of having separate comparer classes for different types like CompareCategories or CompareUsers, you can use the generic CompareById<T> to handle comparisons based on the Id property for any model.
+
+This simplifies your code and allows for better reuse. However, the trade-off is the use of reflection, which may introduce a slight performance hit compared to direct property access.

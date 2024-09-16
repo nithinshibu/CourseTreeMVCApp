@@ -24,6 +24,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//we are using the AddScoped, so the IDataFunctions type is instantiated once into the DataFunctions object 
+//so when a new request comes, the data functions object created from the relevant registered type is available throughout the lifetime of the one request.
+//If a new request occurs, a new instance of the data function object is created before being appropriately injected. 
+builder.Services.AddScoped<IDataFunctions,DataFunctions>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

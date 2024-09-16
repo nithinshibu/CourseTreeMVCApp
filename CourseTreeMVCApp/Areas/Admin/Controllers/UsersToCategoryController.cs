@@ -1,4 +1,5 @@
 ﻿using CourseTreeMVCApp.Areas.Admin.Models;
+using CourseTreeMVCApp.Data;
 using CourseTreeMVCApp.Data.DbContext;
 using CourseTreeMVCApp.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +13,12 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
     public class UsersToCategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IDataFunctions _dataFunctions;
 
-        public UsersToCategoryController(ApplicationDbContext context)
+        public UsersToCategoryController(ApplicationDbContext context,IDataFunctions dataFunctions)
         {
             _context = context;
+            _dataFunctions = dataFunctions;
         }
 
         [HttpGet]
@@ -52,32 +55,38 @@ namespace CourseTreeMVCApp.Areas.Admin.Controllers
             }
             
             var usersSelectedForCategoryToDelete = await GetUsersForCategoryToDelete(usersCategoryListModel.CategoryId);
+
+            #region not-used-as-data-functions-class-created-for-dry-principle
             //Entity Framework Transaction
             //This will work only if all the operation are success, if one of them fails then all of them fails
-            using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
-            {
-                try
-                {
+            //using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
+            //{
+            //    try
+            //    {
 
-                    _context.RemoveRange(usersSelectedForCategoryToDelete);
-                    await _context.SaveChangesAsync();
-                    if (usersSelectedForCategoryToAdd != null)
-                    {
-                        _context.AddRange(usersSelectedForCategoryToAdd);
-                        await _context.SaveChangesAsync();
-                    }
-                    //This line finalizes the transaction. It means "apply all the scheduled changes to the database." If this line is reached without errors, the deletions and additions are saved permanently.
-                    await dbContextTransaction.CommitAsync();
+            //        _context.RemoveRange(usersSelectedForCategoryToDelete);
+            //        await _context.SaveChangesAsync();
+            //        if (usersSelectedForCategoryToAdd != null)
+            //        {
+            //            _context.AddRange(usersSelectedForCategoryToAdd);
+            //            await _context.SaveChangesAsync();
+            //        }
+            //        //This line finalizes the transaction. It means "apply all the scheduled changes to the database." If this line is reached without errors, the deletions and additions are saved permanently.
+            //        await dbContextTransaction.CommitAsync();
 
-                }
-                catch (Exception)
-                {
-                    //If any error occurs during the changes, the catch block is executed. Instead of committing the transaction, it disposes of it. This effectively cancels all the changes made during the transaction, ensuring the database remains unchanged in case of an error.
-                    await dbContextTransaction.DisposeAsync();
-                }
+            //    }
+            //    catch (Exception)
+            //    {
+            //        //If any error occurs during the changes, the catch block is executed. Instead of committing the transaction, it disposes of it. This effectively cancels all the changes made during the transaction, ensuring the database remains unchanged in case of an error.
+            //        await dbContextTransaction.DisposeAsync();
+            //    }
 
-            }
-                        
+            //}
+
+            #endregion
+
+            await _dataFunctions.UpdateUserCategoryEntityAsync(usersSelectedForCategoryToDelete, usersSelectedForCategoryToAdd);
+
             usersCategoryListModel.Users = await GetAllUsers();
             return PartialView("_UsersListViewPartial", usersCategoryListModel);
         }

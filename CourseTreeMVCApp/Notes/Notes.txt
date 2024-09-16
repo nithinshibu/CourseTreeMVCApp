@@ -105,3 +105,36 @@ From this copy the link inside the src, src="https://www.youtube.com/embed/w1_Am
 
 Also we need to add one more thing in this link "https://www.youtube.com/embed/w1_AmHv2LmA?autoplay=1&mute=1" (Add Autoplay ->  ?autoplay=1  and also add &mute=1)
 
+===============Dependency Injection==============
+1)Scoped
+//we are using the AddScoped, so the IDataFunctions type is instantiated once into the DataFunctions object 
+//so when a new request comes, the data functions object created from the relevant registered type is available throughout the lifetime of the one request.
+//If a new request occurs, a new instance of the data function object is created before being appropriately injected. 
+builder.Services.AddScoped<IDataFunctions,DataFunctions>();
+
+2)Transient
+//builder.Services.AddTransient<IDataFunctions,DataFunctions>();
+If we are using the AddTransient method to register the IDataFunctionsType for dependency injection, a new data functions object would be instantiated on every time an object of the
+IDataFunctions type is injected into the relevant classes constructor.
+
+For Example, if the data functions object was injected into the constructor of the categories to user controller class and subsequently the constructor of the users to category controller class
+during one request , a different object of type IDataFunctions would be passed to the users to category controller class when compared to the object passed into the categories to user controller class
+via dependency injection , a new object is created before the object is injected every time a dependency injection operation occurs for the relevant IDataFunctions object when the AddTransient method is used to register the IDataFunctions type for dependency injection.
+
+3)Singleton
+
+//builder.Services.Singleton<IDataFunctions,DataFunctions>();
+
+In this case,the DataFunctions object is created once and is not recreated with every request. 
+
+
+Transient objects are always different, a new instance is provided to every controller and every service.
+
+Scoped objects are the same within a request but different across different request.  
+
+Singleton objects are the same for every object and every request.
+
+
+
+
+
